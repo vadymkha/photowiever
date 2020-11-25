@@ -1,0 +1,48 @@
+﻿<Window x:Class="FotoViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FotoViewer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="480" Width="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="SelectedImg" Grid.Row="0" Grid.Column="0" Source="{Binding SelectedFoto.Filepath}"></Image>
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=Album}" SelectedItem="{Binding Path=SelectedFoto}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel ScrollViewer.HorizontalScrollBarVisibility="Visible"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="{Binding Path=Filepath}" Height="50" Width="50"></Image>
+                        <TextBlock Text="{Binding Path=Filename}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button Command="{Binding AddCommand}">Add</Button>
+            <Button Command="{Binding RemoveCommand}" CommandParameter="{Binding Path=SelectedFoto}">Delete</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label DockPanel.Dock="Left">Filepath:</Label>
+            <Label DockPanel.Dock="Right" Content="{Binding SelectedFoto.Filepath}"></Label>
+            <Label DockPanel.Dock="Left">Filename:</Label>
+            <Label DockPanel.Dock="Right" Content="{Binding SelectedFoto.Filename}"></Label>
+            <Label DockPanel.Dock="Left">Size:</Label>
+            <Label DockPanel.Dock="Right" Content="{Binding SelectedFoto.Filesize}"></Label>
+        </StackPanel>
+    </Grid>
+</Window>
