@@ -40,7 +40,7 @@ namespace FotoViewer.ViewModel
                     obj =>
                     {
                         OpenFileDialog openDialog = new OpenFileDialog();
-                        openDialog.Filter = "JPEG files (*.JPEG)|*.JPEG|All files (*.*)|*.*||";
+                        openDialog.Filter = "JPEG files (*.JPG)|*.JPG|All files (*.*)|*.*||";
                         if(openDialog.ShowDialog() == true)
                         {
                             FileInfo file = new FileInfo(openDialog.FileName);
@@ -66,7 +66,7 @@ namespace FotoViewer.ViewModel
                     },
                     (obj)=>
                     {
-                        return Album.Count > 0;
+                        return Album.Count > 1;
                     }
                     ));
             }
