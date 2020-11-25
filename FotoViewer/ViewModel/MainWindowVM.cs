@@ -40,8 +40,9 @@ namespace FotoViewer.ViewModel
                     obj =>
                     {
                         OpenFileDialog openDialog = new OpenFileDialog();
-                        openDialog.Filter = "JPEG files (*.JPG)|*.JPG|All files (*.*)|*.*||";
-                        if(openDialog.ShowDialog() == true)
+                       // openDialog.Filter = "JPEG files (*.JPG)|*.JPG|All files (*.*)|*.*||";
+                        openDialog.Filter = "All files (*.*)|*.*||";
+                        if (openDialog.ShowDialog() == true)
                         {
                             FileInfo file = new FileInfo(openDialog.FileName);
                             Foto foto = new Foto { Filepath = openDialog.FileName, Filename = file.Name, Filesize = (int)file.Length };
